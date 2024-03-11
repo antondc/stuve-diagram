@@ -19,6 +19,9 @@
       y coord trafo/.code={\pgfmathparse{#1^0.286}},
       y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
     ]
+    \foreach \T in {-30,-20,..., 150} {
+        \addplot [blue, domain=-95:45] {1000*((273.15+x)/(273.15+\T))^(1/0.286)};
+      };
   \end{axis}
 \end{tikzpicture}
 
