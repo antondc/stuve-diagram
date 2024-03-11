@@ -1,0 +1,15 @@
+*latexindent*
+*.aux
+*.log
+*.fls
+*.idx
+*.ilg
+*.ind
+*.log
+*.nlo
+*.nls
+*.nfs
+*.out
+*.toc
+*.synctex*
+*latexmk
