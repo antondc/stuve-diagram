@@ -1,7 +1,13 @@
 \documentclass[titlepage]{article}
 \usepackage{pgfplots}
-
+\usepackage[unicode, hidelinks]{hyperref}
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry} % Margins
 \begin{document}
+
+\section*{Stuve diagram in \LaTeX}
+
+\subsection*{Dry adiabats calculation}
+\subsubsection*{Diagram}
 
 \begin{tikzpicture}
   \begin{axis}[
@@ -12,17 +18,151 @@
       y dir=reverse,
       ytick={100,200,...,1000},
       yticklabel style={/pgf/number format/.cd, precision=0, relative*=2},
-      xlabel=T,
-      ylabel=p (hPa),
+      xlabel=\( T \),
+      ylabel=\( p (hPa) \),
       grid=both,
       width=15cm,
       y coord trafo/.code={\pgfmathparse{#1^0.286}},
       y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
     ]
     \foreach \T in {-30,-20,..., 150} {
-        \addplot [blue, domain=-95:45] {1000*((273.15+x)/(273.15+\T))^(1/0.286)};
+        \addplot [blue, domain=-95:45] {1000*((x + 273.15)/(\T + 273.15))^(1/0.286)};
       };
   \end{axis}
 \end{tikzpicture}
+\subsubsection*{Explanation}
+
+Given the following dry adiabats formula\footnote{See \href{https://www.igf.fuw.edu.pl/m/courses{\_}materials/7c/dd/7cdd179d-d7dc-44dc-9394-dfab086cb84a/thermodynamic{\_}diagrams.pdf}{https://www.igf.fuw.edu.pl/m/courses{\_}materials.../thermodynamic{\_}diagrams.pdf}}:
+
+\[ \phi = T \cdot \biggl(\frac{p_0}{p}\biggr)^k \]
+
+We know that \( \phi \) refers to the \( x \) axis, and \( p \) to the \( y \) axis, so we can rearrange to solve for \( p \):
+
+\[ \frac{\phi}{T} = \biggl(\frac{p_0}{p}\biggr)^{k} \]
+\[ \biggl(\frac{\phi}{T}\biggr)^{\frac{1}{k}} = \frac{p_0}{p} \]
+\[ \biggl(\frac{T}{\phi}\biggr)^{\frac{1}{k}} = \frac{p}{p_0} \]
+\[ p_0 \cdot \biggl(\frac{T}{\phi}\biggr)^{\frac{1}{k}} = p \]
+\[ p = p_0 \cdot \biggl(\frac{T}{\phi}\biggr)^{\frac{1}{k}} \]
+
+We know that \( \phi \) refers to the \( x \) axis, and \( p \) to the \( y \) axis, while \( p_0 \) is the initial pressure with a standart value of 1000 hPa, and \( k \) the Poisson constant, the ratio of the gas constant to the specific heat capacity at constant pressure for an ideal diatomic gas\footnote{See \href{https://resources.eumetrain.org/data/2/28/Content/theta.htm}{https://resources.eumetrain.org/data/2/28/Content/theta.htm}}.
+
+\[ \phi = x ; \quad p = y ; \quad p_0 = 1000 ; \quad k = 0.286 \]
+
+We can replace variables:
+
+\[ y = 1000 \cdot \biggl(\frac{T}{x}\biggr)^{\frac{1}{0.286}} \]
+
+And knowing that temperature should be in Kelvin:
+
+\[ y = 1000 \cdot \biggl(\frac{T + 273.15}{x + 273.15}\biggr)^{\frac{1}{0.286}} \]
+Which gives us a formula to use in the LaTeX diagram.
+
+\begin{verbatim}
+    1000 * ((x + 273.15) / (\T + 273.15))^(1/0.286)
+\end{verbatim}
+
+Also, we shoult take into account that in Stuve diagrams we want to draw the dry adiabats as straight lines. Thus \( y \) axis is not logarithmic, but progressing in a ratio of \( y^{\frac{1}{0.286}} \).
+
+\begin{verbatim}
+  \begin{axis}[
+    [...]
+    y coord trafo/.code={\pgfmathparse{#1^0.286}},
+    y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
+  ]
+\end{verbatim}
+
+\vspace*{\fill}
+
+\subsection*{Isohumes calculation (Work in Progress)}
+\subsubsection*{Diagram}
+
+\begin{tikzpicture}
+  \begin{axis}[
+      xmin=-95,
+      xmax=45,
+      ymin=95,
+      ymax=1020,
+      y dir=reverse,
+      ytick={100,200,...,1000},
+      yticklabel style={/pgf/number format/.cd, precision=0, relative*=2},
+      xlabel=\( T \),
+      ylabel=\( p (hPa) \),
+      grid=both,
+      width=15cm,
+      y coord trafo/.code={\pgfmathparse{#1^0.286}},
+      y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
+    ]
+    \foreach \T in {-30,-20,..., 150} {
+        \addplot [blue, domain=-95:45] {1000*((x + 273.15)/(\T + 273.15))^(1/0.286)};
+      };
+  \end{axis}
+  \begin{axis}[
+      xmin=-95,
+      xmax=45,
+      ymin=95,
+      ymax=1020,
+      y dir=reverse,
+      ytick={100,200,...,1000},
+      yticklabel style={/pgf/number format/.cd, precision=0, relative*=2},
+      xlabel=\( r (g \cdot Kg) \),
+      xlabel near ticks,
+      grid=both,
+      width=15cm,
+      y coord trafo/.code={\pgfmathparse{#1^0.286}},
+      y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
+      axis x line*=top
+    ]
+    \foreach \T in {-30,-20,..., 150} {
+        \addplot [red] {((0.23620100952 * exp((12.27 * \T)/(237.3 + \T))) + (x * 0.61078 * exp((12.27 * \T)/(237.3 + \T))) / x) * 10};
+      };
+  \end{axis}
+\end{tikzpicture}
+
+\subsubsection*{Explanation}
+
+Given the following formula\footnote{See \href{https://www.igf.fuw.edu.pl/m/courses{\_}materials/7c/dd/7cdd179d-d7dc-44dc-9394-dfab086cb84a/thermodynamic{\_}diagrams.pdf}{https://www.igf.fuw.edu.pl/m/courses{\_}materials.../thermodynamic{\_}diagrams.pdf}}:
+
+\[ r_s = \epsilon \cdot \frac{e_s(T)}{p - e_s(T)} \]
+
+% And asuming that \( e_s \) is the Tetens equation\footnote{See \href{https://en.wikipedia.org/wiki/Tetens_equation/}{https://en.wikipedia.org/wiki/Tetens_equation}}:
+And asuming that \( e_s \) is the Tetens equation\footnote{See \href{https://en.wikipedia.org/wiki/Tetens{\_}equation}{https://en.wikipedia.org/wiki/Tetens{\_}equation}}:
+
+\[ e_s(T) = 0.61078 \cdot \exp \biggl(\frac{12.27 \cdot T}{237.3 + T}\biggr) \]
+
+We know that \( r_s \) refers to the \( x \) axis, and \( p \) to the \( y \) axis.
+\[ r_s = x ; \quad p = y \]
+
+\[ x = \epsilon \cdot \frac{e_s(T)}{y - e_s(T)} \]
+
+Then we can solve for \( y \):
+
+\[ x = \frac{\epsilon \cdot e_s(T)}{y - e_s(T)} \]
+
+\[ y - e_s(T) = \frac{\epsilon \cdot e_s(T)}{x} \]
+
+\[ y  = \frac{\epsilon \cdot e_s(T)}{x} + e_s(T) \]
+
+\[ y  = \frac{(\epsilon \cdot e_s(T)) + (x \cdot e_s(T))}{x} \]
+
+\[ y  = \frac{(\epsilon \cdot 0.61078 \cdot \exp(\frac{12.27 \cdot T}{237.3 + T})) + (x \cdot 0.61078 \cdot \exp(\frac{12.27 \cdot T}{237.3 + T}))}{x} \]
+
+We also know that \( \epsilon \) is a constant: the ratio between the gas constant for dry air and the gas constant for water vapor\footnote{See \href{https://pressbooks-dev.oer.hawaii.edu/atmo/chapter/chapter-4-water-vapor/}{pressbooks-dev.oer.hawaii.edu/atmo/chapter/chapter-4-water-vapor/}}:
+
+\[ \epsilon = 0.622 \]
+
+We replace \( \epsilon \):
+
+\[ y  = \frac{(0.622 \cdot 0.61078 \cdot \exp(\frac{12.27 \cdot T}{237.3 + T})) + (x \cdot 0.61078 \cdot \exp(\frac{12.27 \cdot T}{237.3 + T}))}{x} \]
+
+\[ y  = \frac{(0.23620100952 \cdot \exp(\frac{12.27 \cdot T}{237.3 + T})) + (x \cdot 0.61078 \cdot \exp(\frac{12.27 \cdot T}{237.3 + T}))}{x} \]
+
+
+Which we should be able to use in LaTeX:
+
+\begin{verbatim}
+  ((0.23620100952 * exp((12.27 * \T)/(237.3 + \T))) + (x * 0.61078 * exp((12.27 * \T)/(237.3 + \T))) / x) * 10
+\end{verbatim}
+
+\vspace*{\fill}
 
 \end{document}
