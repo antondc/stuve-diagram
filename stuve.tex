@@ -32,7 +32,7 @@
 \end{tikzpicture}
 \subsubsection*{Explanation}
 
-Given the following dry adiabats formula\footnote{See \href{https://www.igf.fuw.edu.pl/m/courses\_materials/7c/dd/7cdd179d-d7dc-44dc-9394-dfab086cb84a/thermodynamic\_diagrams.pdf}{https://www.igf.fuw.edu.pl/m/courses\_materials.../thermodynamic\_diagrams.pdf}}:
+Given the following dry adiabats formula\footnote{\href{https://www.eoas.ubc.ca/books/Practical\_Meteorology/}{Stull, Roland: \textit{Practical Meteorology: An Algebra-based Survey of Atmospheric Science}}, chapter 3, p. 61, equation 3.12, 2018}:\footnote{\href{https://www.igf.fuw.edu.pl/m/courses\_materials/7c/dd/7cdd179d-d7dc-44dc-9394-dfab086cb84a/thermodynamic\_diagrams.pdf}{www.igf.fuw.edu.pl/m/courses\_materials.../thermodynamic\_diagrams.pdf}}
 
 \[ \phi = T \cdot \biggl(\frac{p_0}{p}\biggr)^k \]
 
@@ -44,7 +44,7 @@ We know that \( \phi \) refers to the \( x \) axis, and \( p \) to the \( y \) a
 \[ p_0 \cdot \biggl(\frac{T}{\phi}\biggr)^{\frac{1}{k}} = p \]
 \[ p = p_0 \cdot \biggl(\frac{T}{\phi}\biggr)^{\frac{1}{k}} \]
 
-We know that \( \phi \) refers to the \( x \) axis, and \( p \) to the \( y \) axis, while \( p_0 \) is the initial pressure with a standart value of 1000 hPa, and \( k \) the Poisson constant, the ratio of the gas constant to the specific heat capacity at constant pressure for an ideal diatomic gas\footnote{See \href{https://resources.eumetrain.org/data/2/28/Content/theta.htm}{https://resources.eumetrain.org/data/2/28/Content/theta.htm}}.
+We know that \( \phi \) refers to the \( x \) axis, and \( p \) to the \( y \) axis, while \( p_0 \) is the initial pressure with a standart value of 1000 hPa, and \( k \) the Poisson constant, the ratio of the gas constant to the specific heat capacity at constant pressure for an ideal diatomic gas\footnote{See \href{resources.eumetrain.org/data/2/28/Content/theta.htm}{https://resources.eumetrain.org/data/2/28/Content/theta.htm}}.
 
 \[ \phi = x ; \quad p = y ; \quad p_0 = 1000 ; \quad k = 0.286 \]
 
@@ -120,12 +120,12 @@ Also, we shoult take into account that in Stuve diagrams we want to draw the dry
 
 \subsubsection*{Explanation}
 
-Given the following formula\footnote{See \href{https://www.igf.fuw.edu.pl/m/courses\_materials/7c/dd/7cdd179d-d7dc-44dc-9394-dfab086cb84a/thermodynamic\_diagrams.pdf}{https://www.igf.fuw.edu.pl/m/courses\_materials.../thermodynamic\_diagrams.pdf}}:
+Given the following formula\footnote{See \href{https://www.igf.fuw.edu.pl/m/courses\_materials/7c/dd/7cdd179d-d7dc-44dc-9394-dfab086cb84a/thermodynamic\_diagrams.pdf}{www.igf.fuw.edu.pl/m/courses\_materials.../thermodynamic\_diagrams.pdf}}:
 
 \[ r_s = \epsilon \cdot \frac{e_s(T)}{p - e_s(T)} \]
 
 % And asuming that \( e_s \) is the Tetens equation\footnote{See \href{https://en.wikipedia.org/wiki/Tetens_equation/}{https://en.wikipedia.org/wiki/Tetens_equation}}:
-And asuming that \( e_s \) is the Tetens equation\footnote{See \href{https://en.wikipedia.org/wiki/Tetens\_equation}{https://en.wikipedia.org/wiki/Tetens\_equation}}:
+And asuming that \( e_s \) is the Tetens equation\footnote{See \href{https://en.wikipedia.org/wiki/Tetens\_equation}{en.wikipedia.org/wiki/Tetens\_equation}}:
 
 \[ e_s(T) = 0.61078 \cdot \exp \biggl(\frac{12.27 \cdot T}{237.3 + T}\biggr) \]
 
@@ -162,6 +162,8 @@ Which we should be able to use in LaTeX:
 \begin{verbatim}
   ((0.23620100952 * exp((12.27 * \T)/(237.3 + \T))) + (x * 0.61078 * exp((12.27 * \T)/(237.3 + \T))) / x) * 10
 \end{verbatim}
+
+\textcolor{red}{\sc{wip}}
 
 \vspace*{\fill}
 
