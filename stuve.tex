@@ -8,6 +8,7 @@
 \addtolength{\skip\footins}{1cm}  % Space between main text and footnotes
 \usepackage{fp}
 \usetikzlibrary{fixedpointarithmetic}
+\usepackage{filecontents}
 
 \begin{document}
 \begin{tikzpicture}
@@ -40,9 +41,9 @@
       y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
       fixed point arithmetic
     ]
-    \input{temperature.tex}
-    \input{dew_point.tex}
-    \input{altitude.tex}
+    \addplot [red,thick] table [col sep=comma,header=false] {temperature.csv};
+    \addplot [teal,thick] table [col sep=comma,header=false] {dew_point.csv};
+    \addplot [black,dashed] table [col sep=comma,header=false] {altitude.csv};
   \end{axis}
   \begin{axis}[
       xmin=-95,
