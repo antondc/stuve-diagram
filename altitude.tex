@@ -1,0 +1,4 @@
+\addplot [black,dashed,style={align=left}] coordinates {
+    (-95, 898)
+    (45, 898)
+  } node[pos=0.1,above] { \pgfmathparse{int(round(((10^(log10(898/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(898/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult \space m};
