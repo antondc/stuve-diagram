@@ -4,13 +4,14 @@
     xticklabels=\empty,
     scaled ticks=false,
     xtick=false,
-    yticklabel style={align=left,font=\scriptsize,/pgf/number format/fixed},
+    yticklabel style={align=left,font=\scriptsize,/pgf/number format/fixed,text opacity=0.5,xshift=2.2cm},
     ytick={0,1000,2000,...,15000},
     yticklabels={0,1000,2000,...,15000},
-    yticklabel={\pgfmathprintnumber{\tick} m. \tiny{\pgfmathparse{int(round(\tick/0.3048))}\pgfmathprintnumber{\pgfmathresult} f.}},
+    yticklabel={\tiny{\pgfmathprintnumber{\tick}m. \pgfmathparse{int(round(\tick/0.3048))}\pgfmathprintnumber{\pgfmathresult}f.}},
     width=15cm,
-    axis y line*=right,
-    fixed point arithmetic
+    axis y line*=left,
+    fixed point arithmetic,
+    ytick align=inside,
   ]
   \addplot [opacity=0] coordinates { (1,0)   (1,15000)};
 \end{axis}
