@@ -10,12 +10,10 @@
     width=15cm,
     y coord trafo/.code={\pgfmathparse{#1^0.286}},
     y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
-    fixed point arithmetic
+    fixed point arithmetic,
   ]
-  % TEMPERATURE
-  \addplot [red,thick] table [col sep=comma,header=false] {data/temperature.csv};
+
   % DEW POINT
-  \addplot [teal,thick] table [col sep=comma,header=false] {data/dew_point.csv};
-  % BASE HEIGHT
-  \addplot [black,dashed] table [col sep=comma,header=false] {data/altitude.csv};
+  \addplot [teal,thick] table [x=dew_point, y=pressure, col sep=comma] {data/sounding.csv};
+
 \end{axis}
