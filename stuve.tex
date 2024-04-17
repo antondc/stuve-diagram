@@ -12,66 +12,8 @@
 
 \begin{document}
 \begin{tikzpicture}
-  \begin{axis}[
-      xmin=-95,
-      xmax=45,
-      ymin=3.668,
-      ymax=7.2219,
-      y dir=reverse,
-      ytick={100^0.2854,200^0.2854,300^0.2854,400^0.2854,500^0.2854,600^0.2854,700^0.2854,800^0.2854,900^0.2854,1000^0.2854},
-      yticklabels=\empty,
-      xticklabels=\empty,
-      xlabel=\(T\),
-      ylabel=\(p (hPa)\),
-      width=15cm,
-    ]
-    \input{adiabats.tex}
-  \end{axis}
-  \begin{axis}[
-      xmin=-95,
-      xmax=45,
-      ymin=95,
-      ymax=1020,
-      ytick={100,200,...,1000},
-      yticklabel style={/pgf/number format/.cd, precision=0, relative*=2},
-      y dir=reverse,
-      grid=both,
-      width=15cm,
-      y coord trafo/.code={\pgfmathparse{#1^0.286}},
-      y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
-      fixed point arithmetic
-    ]
-    \addplot [red,thick] table [col sep=comma,header=false] {data/temperature.csv};
-    \addplot [teal,thick] table [col sep=comma,header=false] {data/dew_point.csv};
-    \addplot [black,dashed] table [col sep=comma,header=false] {data/altitude.csv};
-  \end{axis}
-  \begin{axis}[
-      xmin=-95,
-      xmax=45,
-      ymin=95,
-      ymax=1020,
-      ytick={100,200,...,1000},
-      yticklabel style={align=left,font=\scriptsize},
-      yticklabels={
-          \pgfmathparse{int(round(((10^(log10(100/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(100/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(200/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(200/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(300/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(300/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(400/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(400/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(500/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(500/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(600/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(600/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(700/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(700/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(800/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(800/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(900/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(900/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-          \pgfmathparse{int(round(((10^(log10(1000/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(1000/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
-        },
-      y dir=reverse,
-      grid=both,
-      width=15cm,
-      y coord trafo/.code={\pgfmathparse{#1^0.286}},
-      y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
-      axis y line*=right,
-      fixed point arithmetic
-    ]
-  \end{axis}
+  \input{graphs/adiabats-axis.tex}
+  \input{graphs/plot.tex}
+  \input{graphs/height.tex}
 \end{tikzpicture}
 \end{document}

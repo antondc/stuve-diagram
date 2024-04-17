@@ -1,0 +1,28 @@
+\begin{axis}[
+  xmin=-95,
+  xmax=45,
+  ymin=95,
+  ymax=1020,
+  ytick={100,200,...,1000},
+  yticklabel style={align=left,font=\scriptsize},
+  yticklabels={
+      \pgfmathparse{int(round(((10^(log10(100/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(100/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(200/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(200/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(300/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(300/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(400/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(400/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(500/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(500/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(600/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(600/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(700/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(700/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(800/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(800/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(900/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(900/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+      \pgfmathparse{int(round(((10^(log10(1000/1013.25)/5.2558797)-1)/(-6.8755856*10^-6))))}\pgfmathresult \space f \\ \pgfmathparse{int(round(((10^(log10(1000/1013.25)/5.2558797)-1)/(-6.8755856*10^-6)) * 0.3048))}\pgfmathresult  m,
+    },
+  y dir=reverse,
+  grid=both,
+  width=15cm,
+  y coord trafo/.code={\pgfmathparse{#1^0.286}},
+  y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
+  axis y line*=right,
+  fixed point arithmetic
+]
+\end{axis}
