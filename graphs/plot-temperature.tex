@@ -11,10 +11,11 @@
     y coord trafo/.code={\pgfmathparse{#1^0.286}},
     y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
     fixed point arithmetic,
+    axis y line*=left,
   ]
 
   % TEMPERATURE
-  \addplot [red,thick] table [x=temperature, y=pressure, col sep=comma] {data/sounding.csv};
+  \addplot [thick] table [x=temperature, y=pressure, col sep=comma] {data/sounding.csv};
 
 
 \end{axis}

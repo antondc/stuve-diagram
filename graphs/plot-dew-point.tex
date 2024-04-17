@@ -11,9 +11,10 @@
     y coord trafo/.code={\pgfmathparse{#1^0.286}},
     y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
     fixed point arithmetic,
+    axis y line*=left,
   ]
 
   % DEW POINT
-  \addplot [teal,thick] table [x=dew_point, y=pressure, col sep=comma] {data/sounding.csv};
+  \addplot [thick, densely dotted] table [x=dew_point, y=pressure, col sep=comma] {data/sounding.csv};
 
 \end{axis}
