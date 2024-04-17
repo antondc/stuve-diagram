@@ -23,7 +23,7 @@
   ]
 
   % BASE HEIGHT
-  \addplot [black,dashed,select coords between index={0}{0},yshift=2mm] table [x expr={0}, y=pressure, col sep=comma] {data/sounding.csv} node [right] at (axis cs:-95,\pressure) {\altitude \space m};
+  \addplot [black,dashed,select coords between index={0}{0},yshift=2mm] table [x expr={0}, y=pressure, col sep=comma] {data/sounding.csv} node [right] at (axis cs:-95,\pressure) {\pgfmathprintnumber{\altitude} \space m};
 
   % BASE HEIGHT LINE
   \addplot [black,dashed,select coords between index={0}{0}] table [x expr={0}, y=pressure, col sep=comma] {data/sounding.csv} node {———————————————————————————————————————————————————————————————————};

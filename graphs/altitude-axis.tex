@@ -1,0 +1,16 @@
+\begin{axis}[
+    ymin=-56,
+    ymax=16074,
+    xticklabels=\empty,
+    scaled ticks=false,
+    xtick=false,
+    yticklabel style={align=left,font=\scriptsize,/pgf/number format/fixed},
+    ytick={0,1000,2000,...,15000},
+    yticklabels={0,1000,2000,...,15000},
+    yticklabel={\pgfmathprintnumber{\tick} m. \tiny{\pgfmathparse{int(round(\tick/0.3048))}\pgfmathprintnumber{\pgfmathresult} f.}},
+    width=15cm,
+    axis y line*=right,
+    fixed point arithmetic
+  ]
+  \addplot [opacity=0] coordinates { (1,0)   (1,15000)};
+\end{axis}
