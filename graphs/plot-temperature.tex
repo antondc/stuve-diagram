@@ -6,6 +6,7 @@
     tick style={draw=none},
     ytick={100,200,...,1000},
     yticklabel style={/pgf/number format/.cd, precision=0, relative*=2},
+    xticklabel={\pgfmathparse{int(round(\tick))}\pgfmathprintnumber{\pgfmathresult}°},
     y dir=reverse,
     grid=both,
     width=15cm,

@@ -7,6 +7,7 @@
     ytick={100,200,...,1000},
     yticklabel style={/pgf/number format/.cd, precision=0, relative*=2},
     y dir=reverse,
+    xticklabel={\pgfmathparse{int(round(\tick))}\pgfmathprintnumber{\pgfmathresult}°},
     grid=both,
     width=15cm,
     y coord trafo/.code={\pgfmathparse{#1^0.286}},

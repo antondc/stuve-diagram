@@ -18,6 +18,7 @@
     width=15cm,
     y coord trafo/.code={\pgfmathparse{#1^0.286}},
     y coord inv trafo/.code={\pgfmathparse{#1^(1/0.286)}},
+    xticklabel={\pgfmathparse{int(round(\tick))}\pgfmathprintnumber{\pgfmathresult}°},
     fixed point arithmetic,
     visualization depends on={value \thisrow{altitude}\as\altitude},
     visualization depends on={value \thisrow{pressure}\as\pressure},
